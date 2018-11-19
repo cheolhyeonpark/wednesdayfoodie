@@ -1,0 +1,12 @@
+plugins {
+    id 'java'
+    id 'eclipse-wtp'
+    id 'war'
+}
+
+dependencies {
+}
+
+repositories {
+    jcenter()
+}
