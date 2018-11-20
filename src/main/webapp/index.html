@@ -39,45 +39,60 @@
 			alt="축소"></span>
 	</div>
 
+    <script src="./js/jquery-3.3.1.min.js"></script>
 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=83c2b82ff87bbaca7de26846b5d93a7b"></script>
-        <script>
-            var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-                mapOption = {
-                    center: new daum.maps.LatLng(37.56682, 126.97865), // 지도의 중심좌표
-                    level: 4, // 지도의 확대 레벨
-                    mapTypeId : daum.maps.MapTypeId.ROADMAP // 지도종류
-                }; 
-    
-            // 지도를 생성한다 
-            var map = new daum.maps.Map(mapContainer, mapOption); 
-            
-            // 지도타입 컨트롤의 지도 또는 스카이뷰 버튼을 클릭하면 호출되어 지도타입을 바꾸는 함수입니다
-            function setMapType(maptype) { 
-                var roadmapControl = document.getElementById('btnRoadmap');
-                var skyviewControl = document.getElementById('btnSkyview'); 
-                if (maptype === 'roadmap') {
-                    map.setMapTypeId(daum.maps.MapTypeId.ROADMAP);    
-                    roadmapControl.className = 'selected_btn';
-                    skyviewControl.className = 'btn';
-                } else {
-                    map.setMapTypeId(daum.maps.MapTypeId.HYBRID);    
-                    skyviewControl.className = 'selected_btn';
-                    roadmapControl.className = 'btn';
-                }
-            }
+    <script>
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+            mapOption = {
+                center: new daum.maps.LatLng(37.56682, 126.97865), // 지도의 중심좌표
+                level: 4, // 지도의 확대 레벨
+                mapTypeId : daum.maps.MapTypeId.ROADMAP // 지도종류
+            }; 
 
-            // 지도 확대, 축소 컨트롤에서 확대 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
-            function zoomIn() {
-                map.setLevel(map.getLevel() - 1);
+        // 지도를 생성한다 
+        var map = new daum.maps.Map(mapContainer, mapOption); 
+        
+        // 지도타입 컨트롤의 지도 또는 스카이뷰 버튼을 클릭하면 호출되어 지도타입을 바꾸는 함수입니다
+        function setMapType(maptype) { 
+            var roadmapControl = document.getElementById('btnRoadmap');
+            var skyviewControl = document.getElementById('btnSkyview'); 
+            if (maptype === 'roadmap') {
+                map.setMapTypeId(daum.maps.MapTypeId.ROADMAP);    
+                roadmapControl.className = 'selected_btn';
+                skyviewControl.className = 'btn';
+            } else {
+                map.setMapTypeId(daum.maps.MapTypeId.HYBRID);    
+                skyviewControl.className = 'selected_btn';
+                roadmapControl.className = 'btn';
             }
+        }
 
-            // 지도 확대, 축소 컨트롤에서 축소 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
-            function zoomOut() {
-                map.setLevel(map.getLevel() + 1);
-            }    
-            
-            
-            
-        </script>
+        // 지도 확대, 축소 컨트롤에서 확대 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
+        function zoomIn() {
+            map.setLevel(map.getLevel() - 1);
+        }
+
+        // 지도 확대, 축소 컨트롤에서 축소 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
+        function zoomOut() {
+            map.setLevel(map.getLevel() + 1);
+        }    
+        
+        $.getJSON('http://localhost:8080/wednesdayfoodie/json/list',function(result) {
+            if (result.status == 'success') {
+
+            	for (var i = 0; i < result.list.length; i++) {
+            		console.log(result.list[i].titl);
+            		
+            	    var marker = new daum.maps.Marker({
+            	    	map: map,
+            	        position: new daum.maps.LatLng(result.list[i].y, result.list[i].x), 
+            	        title : result.list[i].titl
+            	    });
+            	}
+            	
+            }
+        });
+        
+    </script>
 </body>
 </html>
