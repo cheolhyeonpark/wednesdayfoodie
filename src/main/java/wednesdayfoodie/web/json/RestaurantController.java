@@ -25,10 +25,6 @@ public class RestaurantController {
 		result.put("status", "success");
 		result.put("list", list);
 		
-		for (Restaurant rest : list) {
-			System.out.println(rest.getTitl());
-		}
-		
 		return result;
 	}
 }

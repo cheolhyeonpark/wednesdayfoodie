@@ -19,12 +19,12 @@ import wednesdayfoodie.service.SearchService;
 public class SearchServiceImpl implements SearchService {
 
 	@Override
-	public List<Blog> searchBlog() {
+	public List<Blog> searchBlog(String query, int page) {
 		String clientId = "G6GX00SpQx4U_rawStjU";// 애플리케이션 클라이언트 아이디값";
 		String clientSecret = "BnegF9PJXY";// 애플리케이션 클라이언트 시크릿값";
 		try {
-			String text = URLEncoder.encode("그린팩토리", "UTF-8");
-			String apiURL = "https://openapi.naver.com/v1/search/blog?query=" + text; // json 결과
+			String text = URLEncoder.encode(query+" 수요미식회", "UTF-8");
+			String apiURL = "https://openapi.naver.com/v1/search/blog?query=" + text + "&start=" + (page-1)*10+1; // json 결과
 			URL url = new URL(apiURL);
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
@@ -58,6 +58,10 @@ public class SearchServiceImpl implements SearchService {
 				blog.setName(data.getString("bloggername"));
 				blogList.add(blog);
 			}
+			
+			Blog blog = new Blog();
+			blog.setTitl(String.valueOf(jsonObject.getInt("total")));
+			blogList.add(blog);
 			
 			return blogList;
 		} catch (Exception e) {

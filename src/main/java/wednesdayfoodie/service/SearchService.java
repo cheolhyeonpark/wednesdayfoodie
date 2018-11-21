@@ -6,5 +6,5 @@ import wednesdayfoodie.domain.Blog;
 
 public interface SearchService {
 
-	List<Blog> searchBlog();
+	List<Blog> searchBlog(String query, int page);
 }

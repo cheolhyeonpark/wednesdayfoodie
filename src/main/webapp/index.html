@@ -118,16 +118,16 @@
             	        title : result.list[i].titl
             	    });
             	    
-            	    daum.maps.event.addListener(marker, 'click', clickMarker(i));
+            	    daum.maps.event.addListener(marker, 'click', clickMarker(result.list[i].titl, result.list[i].cont));
             	}
 
             }
         });
         
-        function clickMarker(no) {
+        function clickMarker(titl, cont) {
         	return function() {
 				$('#my_frame').attr('src',
-						'https://search.naver.com/search.naver?sm=top_hty&fbm=0&ie=utf8&query=%EB%84%A4%EC%9D%B4%EB%B2%84+%EA%B2%80%EC%83%89+api');
+						'http://localhost:8080/wednesdayfoodie/app/search?query='+titl+'&page=1');
 				$("#my-dialog,#dialog-background").toggle();
         	}
         }
