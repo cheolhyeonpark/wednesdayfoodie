@@ -106,7 +106,7 @@
             map.setLevel(map.getLevel() + 1);
         }    
         
-        $.getJSON('http://localhost:8080/wednesdayfoodie/json/list',function(result) {
+        $.getJSON('http://13.125.145.195:8080/wednesdayfoodie/json/list',function(result) {
             if (result.status == 'success') {
             	
             	for (var i = 0; i < result.list.length; i++) {
@@ -127,7 +127,7 @@
         function clickMarker(titl, cont) {
         	return function() {
 				$('#my_frame').attr('src',
-						'http://localhost:8080/wednesdayfoodie/app/search?query='+titl+'&page=1');
+						'http://13.125.145.195:8080/wednesdayfoodie/app/search?query='+titl+'&page=1');
 				$("#my-dialog,#dialog-background").toggle();
         	}
         }

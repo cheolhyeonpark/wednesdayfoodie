@@ -42,11 +42,11 @@ a:hover {
 		</c:forEach>
 		<tr>
 			<td style="padding-top: 10px; text-align: center;">
-			<c:if test="${start != 1}"><a href="http://localhost:8080/wednesdayfoodie/app/search?query=${titl }&page=${start-1 }">이전</a> </c:if>｜ 
+			<c:if test="${start != 1}"><a href="http://13.125.145.195:8080/wednesdayfoodie/app/search?query=${titl }&page=${start-1 }">이전</a> </c:if>｜ 
 			<c:forEach var="i" begin="${start }" end="${end }" step="1"> 
-				<a href="http://localhost:8080/wednesdayfoodie/app/search?query=${titl }&page=${i }">${i }</a> ｜
+				<a href="http://13.125.145.195:8080/wednesdayfoodie/app/search?query=${titl }&page=${i }">${i }</a> ｜
 			</c:forEach>
-<%--  			<c:if test="${total != end }"><a href="http://localhost:8080/wednesdayfoodie/app/search?query=${titl }&page=${end+1 }">다음</a></c:if> --%>
+<%--  			<c:if test="${total != end }"><a href="http://13.125.145.195:8080/wednesdayfoodie/app/search?query=${titl }&page=${end+1 }">다음</a></c:if> --%>
 <!-- 네이버 엔진에서 검색을 10page 까지 제한함. -->
 			</td>
 		</tr>
